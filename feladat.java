@@ -20,8 +20,36 @@ public class HelloWorld{
             }
         }
         
-        
-        System.out.println(korbejar(79,matrixI));
+        List<Integer> sorozat = korbejar(79,matrixI);
+        List<Integer> bankszamlaszam = selectNumbers(sorozat);
+        System.out.println(bankszamlaszam);
+    }
+    
+    public static List<Integer> selectNumbers(List<Integer> sorozat) {
+        List<Integer> result = new ArrayList<Integer>();
+        int db = 0;
+        int db1=0;
+        int k=0;
+        System.out.println(sorozat.size());
+            // vegig megyek a sorozaton
+            while(sorozat.size()>db){
+                // amint a 79. elem megvan belerakom egy uj listbe, innen kezdem minden 103. elem kivételét
+                if(db==79){
+                    result.add(sorozat.get(db));
+                    // a 103. elemhez nullazom db1-et
+                    db1=0;
+                }
+                // ha a db1 osztahtó 103-mal, akkor az az elem kell, ami k*103 + 79
+                if(db1%103 == 0 && k < 15) {
+                    k+=1;
+                    System.out.println(79+(k*103));
+                    result.add(sorozat.get(79+(k*103)));
+                }
+                // mindketto erteket novelem
+                db1+=1;
+                db+=1;
+            }
+        return result;
     }
     
     public static List<Integer> korbejar(int start, int[][] matrix){
